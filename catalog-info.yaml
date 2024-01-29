@@ -1,0 +1,12 @@
+# BEGIN TERRAFORM MANAGED BLOCK
+"apiVersion": "backstage.io/v1alpha1"
+"kind": "Location"
+"metadata":
+  "annotations":
+    "github.com/project-slug": "LiveRamp/ats-sdk-android-sample"
+    "github.com/team-slug": "LiveRamp/addressability-admin"
+  "description": "Addressability - Android ATS SDK sample, public repository"
+  "name": "ats-sdk-android-sample"
+  "tags": []
+"spec": {}
+# END TERRAFORM MANAGED BLOCK
