@@ -2,7 +2,7 @@ package com.liveramp.ats_sdk_android.sample.internal
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.liveramp.ats_sdk_android.sample.sample.GetEnvelopeFragment
+import com.liveramp.ats_sdk_android.sample.examples.GetEnvelopeFragment
 import com.liveramp.ats_sdk_android.sample.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

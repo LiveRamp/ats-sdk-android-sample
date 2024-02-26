@@ -1,4 +1,4 @@
-package com.liveramp.ats_sdk_android.sample.sample
+package com.liveramp.ats_sdk_android.sample.examples
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
