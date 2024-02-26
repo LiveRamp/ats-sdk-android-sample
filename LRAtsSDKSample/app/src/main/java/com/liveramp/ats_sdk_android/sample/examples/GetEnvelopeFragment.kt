@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.liveramp.ats.LRAtsManager
+import com.liveramp.ats.model.Envelope
 import com.liveramp.ats.model.LRAtsConfiguration
 import com.liveramp.ats.model.LREmailIdentifier
 import com.liveramp.ats_sdk_android.sample.databinding.FragmentGetEnvelopeBinding
+import com.liveramp.ats_sdk_android.sample.internal.stringRepresentation
 class GetEnvelopeFragment : Fragment() {
     private lateinit var binding: FragmentGetEnvelopeBinding
 
@@ -29,7 +31,7 @@ class GetEnvelopeFragment : Fragment() {
             LRAtsManager.initialize(lrAtsConfiguration) { success, initializeError ->
                 //Covering case if init failed
                 initializeError?.let {
-                    binding.etEnvelopes.text = initializeError.message
+                    binding.tvEnvelopes.text = initializeError.message
                 }
                 //Covering case if init is successful
                 if (success) {
@@ -39,8 +41,8 @@ class GetEnvelopeFragment : Fragment() {
                     //val identifier = LRAtsManager.getEnvelope(LRPhoneIdentifier("060005545689"))
                     //val identifier = LRAtsManager.getEnvelope(LRCustomIdentifier("customId"))
                     LRAtsManager.getEnvelope(identifier) { envelope, error ->
-                        error?.let { binding.etEnvelopes.text = error.message }
-                        envelope?.let { binding.etEnvelopes.text = envelope.envelope }
+                        error?.let { binding.tvEnvelopes.text = error.message }
+                        envelope?.let { binding.tvEnvelopes.text = envelope.stringRepresentation() }
                     }
                 }
             }
