@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.liveramp.ats.LRAtsManager
-import com.liveramp.ats.model.Envelope
 import com.liveramp.ats.model.LRAtsConfiguration
 import com.liveramp.ats.model.LREmailIdentifier
 import com.liveramp.ats_sdk_android.sample.databinding.FragmentGetEnvelopeBinding
