@@ -7,6 +7,9 @@ import androidx.preference.PreferenceManager
 //This class should not be used in production, it is only for demonstration purposes
 //We simulate the user adding consent
 object ConsentManager {
+    enum class KeyType{
+
+    }
     private lateinit var preferences: SharedPreferences
     fun simulateUserConsent(context: Context) {
         preferences = PreferenceManager.getDefaultSharedPreferences(context)
@@ -15,21 +18,24 @@ object ConsentManager {
         giveGPPNationalConsent()
     }
 
-    private fun setSharedPreferencesKey(key: String, value: String) {
+    private fun setSharedPreferencesKey(key: String, value: Any) {
         val editor = preferences.edit()
-        editor.putString(key, value)
+        when (value) {
+            is Int -> editor.putInt(key, value)
+            is String -> editor.putString(key, value)
+            else -> throw IllegalArgumentException()
+        }
         editor.apply()
     }
 
     private fun giveCCPAConsent() {
-        setSharedPreferencesKey("IABUSPrivacy_String", "1-N-")
-        setSharedPreferencesKey("IABGPP_HDR_GppString", "DBACNYA~CPXxRfAPXxRfAAfKABENB-CgAAAAAAAAAAYgAAAAAAAA~1YNN")
+        setSharedPreferencesKey("IABUSPrivacy_String", "1YNN")
     }
 
     private fun giveGDPRConsent() {
         setSharedPreferencesKey(
             "IABTCF_TCString",
-            "CPKZ42oPKZ5YtADABCENBlCgAP_AAAAAAAAAAwwAQAwgDDABADCAAA"
+            "CPKZ42oPKZ5YtADABCENBlCgAP_AAAAAAAAAAwwAQAwgDDABADCAAA.YAAAAAAAA4AA"
         )
         setSharedPreferencesKey(
             "IABTCF_VendorConsents",
@@ -40,21 +46,21 @@ object ConsentManager {
 
     private fun giveGPPNationalConsent() {
         setSharedPreferencesKey("IABGPP_HDR_GppString", "DBAA")
-        setSharedPreferencesKey("IABGPP_USNAT_Version", "1")
-        setSharedPreferencesKey("IABGPP_USNAT_SharingNotice", "1")
-        setSharedPreferencesKey("IABGPP_USNAT_SaleOptOutNotice", "1")
-        setSharedPreferencesKey("IABGPP_USNAT_SharingOptOutNotice", "1")
-        setSharedPreferencesKey("IABGPP_USNAT_TargetedAdvertisingOptOutNotice", "1")
-        setSharedPreferencesKey("IABGPP_USNAT_SensitiveDataProcessingOptOutNotice", "0")
-        setSharedPreferencesKey("IABGPP_USNAT_SensitiveDataLimitUseNotice", "1")
-        setSharedPreferencesKey("IABGPP_USNAT_SaleOptOut", "2")
-        setSharedPreferencesKey("IABGPP_USNAT_SharingOptOut", "2")
-        setSharedPreferencesKey("IABGPP_USNAT_TargetedAdvertisingOptOut", "2")
+        setSharedPreferencesKey("IABGPP_USNAT_Version", 1)
+        setSharedPreferencesKey("IABGPP_USNAT_SharingNotice", 1)
+        setSharedPreferencesKey("IABGPP_USNAT_SaleOptOutNotice", 1)
+        setSharedPreferencesKey("IABGPP_USNAT_SharingOptOutNotice", 1)
+        setSharedPreferencesKey("IABGPP_USNAT_TargetedAdvertisingOptOutNotice", 1)
+        setSharedPreferencesKey("IABGPP_USNAT_SensitiveDataProcessingOptOutNotice", 0)
+        setSharedPreferencesKey("IABGPP_USNAT_SensitiveDataLimitUseNotice", 1)
+        setSharedPreferencesKey("IABGPP_USNAT_SaleOptOut", 2)
+        setSharedPreferencesKey("IABGPP_USNAT_SharingOptOut", 2)
+        setSharedPreferencesKey("IABGPP_USNAT_TargetedAdvertisingOptOut", 2)
         setSharedPreferencesKey("IABGPP_USNAT_SensitiveDataProcessing", "0_0_0_0_0_0_0_0_0_0_0_0")
         setSharedPreferencesKey("IABGPP_USNAT_KnownChildSensitiveDataConsents", "0_0")
-        setSharedPreferencesKey("IABGPP_USNAT_PersonalDataConsents", "2")
-        setSharedPreferencesKey("IABGPP_USNAT_MspaCoveredTransaction", "1")
-        setSharedPreferencesKey("IABGPP_USNAT_MspaOptOutOptionMode", "1")
-        setSharedPreferencesKey("IABGPP_USNAT_MspaServiceProviderMode", "1")
+        setSharedPreferencesKey("IABGPP_USNAT_PersonalDataConsents", 2)
+        setSharedPreferencesKey("IABGPP_USNAT_MspaCoveredTransaction", 1)
+        setSharedPreferencesKey("IABGPP_USNAT_MspaOptOutOptionMode", 1)
+        setSharedPreferencesKey("IABGPP_USNAT_MspaServiceProviderMode", 1)
     }
 }

@@ -15,6 +15,7 @@
         android:text = "@string/app_id_label"
         app:layout_constraintTop_toTopOf="parent" />
     <EditText
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:id="@+id/etAppId"
         app:layout_constraintTop_toBottomOf="@id/tvAppId"
         android:layout_width="match_parent"
@@ -40,19 +41,29 @@
         />
     <TextView
         app:layout_constraintTop_toBottomOf="@id/btnGetEnvelope"
-        android:id="@+id/tvEnvelopes"
+        android:id="@+id/tvEnvelopesLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:text="@string/envelopes_label"/>
-    <TextView
-        android:id="@+id/etEnvelopes"
-        app:layout_constraintTop_toBottomOf="@id/tvEnvelopes"
+    <ScrollView
+        app:layout_constraintTop_toBottomOf="@id/tvEnvelopesLabel"
         android:layout_width="match_parent"
-        android:layout_height="148dp"
+        android:layout_height="118dp"
+        android:background="@drawable/border_background"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:background="@drawable/border_background"
-        />
+        >
+        <TextView
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:id="@+id/tvEnvelopes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
