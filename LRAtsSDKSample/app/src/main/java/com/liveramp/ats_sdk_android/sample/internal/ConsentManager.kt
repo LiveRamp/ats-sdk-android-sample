@@ -7,6 +7,9 @@ import androidx.preference.PreferenceManager
 //This class should not be used in production, it is only for demonstration purposes
 //We simulate the user adding consent
 object ConsentManager {
+    enum class KeyType{
+
+    }
     private lateinit var preferences: SharedPreferences
     fun simulateUserConsent(context: Context) {
         preferences = PreferenceManager.getDefaultSharedPreferences(context)
