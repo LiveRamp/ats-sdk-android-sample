@@ -22,6 +22,7 @@ class GetEnvelopeFragment : Fragment() {
         binding.btnGetEnvelope.setOnClickListener {
             val appID = binding.etAppId.text.toString()
             // You should provide your appID here
+            // isLogToFileEnabled is set to true for debugging purposes, do not use it in your production app
             val lrAtsConfiguration = LRAtsConfiguration(
                 configurationId = appID,
                 isTestMode = false,
