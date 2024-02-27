@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.liveramp.ats.LRAtsManager
-import com.liveramp.ats.model.Envelope
 import com.liveramp.ats.model.LRAtsConfiguration
 import com.liveramp.ats.model.LREmailIdentifier
 import com.liveramp.ats_sdk_android.sample.databinding.FragmentGetEnvelopeBinding
@@ -22,6 +21,7 @@ class GetEnvelopeFragment : Fragment() {
         binding.btnGetEnvelope.setOnClickListener {
             val appID = binding.etAppId.text.toString()
             // You should provide your appID here
+            // isLogToFileEnabled is set to true for debugging purposes, do not use it in your production app
             val lrAtsConfiguration = LRAtsConfiguration(
                 configurationId = appID,
                 isTestMode = false,
