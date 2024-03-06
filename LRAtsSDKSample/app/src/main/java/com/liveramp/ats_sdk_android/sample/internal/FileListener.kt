@@ -22,7 +22,3 @@ class FileListener(private val file: File, private val callback: FileUpdateCallb
         file.createNewFile()
     }
 }
-
-fun interface FileUpdateCallback {
-    fun invoke(logs: String)
-}
