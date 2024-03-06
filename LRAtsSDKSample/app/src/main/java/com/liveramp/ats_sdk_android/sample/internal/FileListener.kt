@@ -1,6 +1,7 @@
 package com.liveramp.ats_sdk_android.sample.internal
 
 import android.os.FileObserver
+import com.liveramp.ats.util.logE
 import java.io.File
 
 class FileListener(private val file: File, private val callback: FileUpdateCallback) : FileObserver(file) {
@@ -17,8 +18,12 @@ class FileListener(private val file: File, private val callback: FileUpdateCallb
         val logsFolder = file.parentFile?.absoluteFile
         if (logsFolder?.exists() == true) {
             logsFolder.deleteRecursively()
-            logsFolder.mkdir()
         }
-        file.createNewFile()
+        try {
+            logsFolder?.mkdir()
+            file.createNewFile()
+        } catch (exception: Exception) {
+            logE(exception.localizedMessage)
+        }
     }
 }
