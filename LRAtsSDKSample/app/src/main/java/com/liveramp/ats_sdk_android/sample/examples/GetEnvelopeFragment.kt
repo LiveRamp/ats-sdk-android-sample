@@ -25,6 +25,14 @@ class GetEnvelopeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentGetEnvelopeBinding.inflate(inflater)
+        configureLogObserver()
+        binding.btnGetEnvelope.setOnClickListener {
+            configureLRAtsExample()
+        }
+        return binding.root
+    }
+
+    private fun configureLogObserver() {
         binding.tvLogs.movementMethod = ScrollingMovementMethod()
         val logFile = File(context?.filesDir?.absolutePath.plus("/logs/${calendarToDate(Calendar.getInstance())}.log"))
         FileListener(logFile) {}.createLogFile()
@@ -38,37 +46,33 @@ class GetEnvelopeFragment : Fragment() {
             }
         }
         fileObserver.startWatching()
-        configureSDKAndGetEnvelope()
-        return binding.root
     }
 
-    private fun configureSDKAndGetEnvelope() {
-        binding.btnGetEnvelope.setOnClickListener {
-            val appID = binding.etAppId.text.toString()
-            // You should provide your appID here
-            // isLogToFileEnabled is set to true for debugging purposes, do not use it in your production app
-            val lrAtsConfiguration = LRAtsConfiguration(
-                configurationId = appID,
-                isTestMode = false,
-                logToFileEnabled = true
-            )
-            // SDK should be initialized only once
-            LRAtsManager.initialize(lrAtsConfiguration) { success, initializeError ->
-                //Covering case if init failed
-                initializeError?.let {
-                    binding.tvEnvelopes.text = initializeError.message
-                }
-                //Covering case if init is successful
-                if (success) {
-                    //Calling getEnvelope method from sdk
-                    // You can use email, phone or custom identifier to get envelope
-                    val identifier = LREmailIdentifier("example@mail.com")
-                    //val identifier = LRAtsManager.getEnvelope(LRPhoneIdentifier("0123456789"))
-                    //val identifier = LRAtsManager.getEnvelope(LRCustomIdentifier("54321:abc123"))
-                    LRAtsManager.getEnvelope(identifier) { envelope, error ->
-                        error?.let { binding.tvEnvelopes.text = error.message }
-                        envelope?.let { binding.tvEnvelopes.text = envelope.stringRepresentation() }
-                    }
+    private fun configureLRAtsExample() {
+        val appID = binding.etAppId.text.toString()
+        // You should provide your appID here
+        // isLogToFileEnabled is set to true for debugging purposes, do not use it in your production app
+        val lrAtsConfiguration = LRAtsConfiguration(
+            configurationId = appID,
+            isTestMode = false,
+            logToFileEnabled = true
+        )
+        // SDK should be initialized only once
+        LRAtsManager.initialize(lrAtsConfiguration) { success, initializeError ->
+            //Covering case if init failed
+            initializeError?.let {
+                binding.tvEnvelopes.text = initializeError.message
+            }
+            //Covering case if init is successful
+            if (success) {
+                //Calling getEnvelope method from sdk
+                // You can use email, phone or custom identifier to get envelope
+                val identifier = LREmailIdentifier("example@mail.com")
+                //val identifier = LRAtsManager.getEnvelope(LRPhoneIdentifier("0123456789"))
+                //val identifier = LRAtsManager.getEnvelope(LRCustomIdentifier("54321:abc123"))
+                LRAtsManager.getEnvelope(identifier) { envelope, error ->
+                    error?.let { binding.tvEnvelopes.text = error.message }
+                    envelope?.let { binding.tvEnvelopes.text = envelope.stringRepresentation() }
                 }
             }
         }
