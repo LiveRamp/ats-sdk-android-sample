@@ -1,6 +1,7 @@
 package com.liveramp.ats_sdk_android.sample.examples
 
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +10,13 @@ import com.liveramp.ats.LRAtsManager
 import com.liveramp.ats.model.LRAtsConfiguration
 import com.liveramp.ats.model.LREmailIdentifier
 import com.liveramp.ats_sdk_android.sample.databinding.FragmentGetEnvelopeBinding
+import com.liveramp.ats_sdk_android.sample.internal.FileListener
 import com.liveramp.ats_sdk_android.sample.internal.stringRepresentation
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
+
 class GetEnvelopeFragment : Fragment() {
     private lateinit var binding: FragmentGetEnvelopeBinding
 
@@ -18,6 +25,24 @@ class GetEnvelopeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentGetEnvelopeBinding.inflate(inflater)
+        binding.tvLogs.movementMethod = ScrollingMovementMethod()
+        val logFile = File(context?.filesDir?.absolutePath.plus("/logs/${calendarToDate(Calendar.getInstance())}.log"))
+        FileListener(logFile) {}.createLogFile()
+        val fileObserver = FileListener(logFile) {
+            binding.tvLogs.text = it
+            val scrollAmount = binding.tvLogs.layout.getLineTop(binding.tvLogs.lineCount) - binding.tvLogs.height
+            if (scrollAmount > 0) {
+                binding.tvLogs.scrollTo(0, scrollAmount)
+            } else {
+                binding.tvLogs.scrollTo(0, 0)
+            }
+        }
+        fileObserver.startWatching()
+        configureSDKAndGetEnvelope()
+        return binding.root
+    }
+
+    private fun configureSDKAndGetEnvelope() {
         binding.btnGetEnvelope.setOnClickListener {
             val appID = binding.etAppId.text.toString()
             // You should provide your appID here
@@ -47,7 +72,11 @@ class GetEnvelopeFragment : Fragment() {
                 }
             }
         }
-        return binding.root
+    }
+
+    private fun calendarToDate(date: Calendar): String {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        return dateFormat.format(date.time)
     }
 
     companion object {
