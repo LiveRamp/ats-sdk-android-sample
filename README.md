@@ -20,8 +20,6 @@ The source code for the sample application is accessible within the `LRAtsSDKSam
     * **Caution**: Do not copy or use this code in production.
     * This directory contains supporting code for certain functionalities presented in the sample application. It is unrelated to the core behavior or the usage of the `LRAtsSDK`.
 
-The configureLRAtsExample method in the GetEnvelopeFragment class contains all of the code that is related to the use of the SDK. This is the most important part of the project where we highlight the use of our library.
-
 ## Consent handling
 
 In order to use the SDK's features, specific requirements must be fulfilled. One of the most crucial requirements is obtaining consent to use personal data. For the purpose of demonstration in this project, we have simulated the user's consent. However, it is important to note that the code used to simulate consent is not suitable for use in a production environment.
