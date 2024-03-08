@@ -1,6 +1,7 @@
 package com.liveramp.ats_sdk_android.sample.examples
 
 import android.os.Bundle
+import android.os.FileObserver
 import android.text.method.ScrollingMovementMethod
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -19,6 +20,7 @@ import java.util.Locale
 
 class GetEnvelopeFragment : Fragment() {
     private lateinit var binding: FragmentGetEnvelopeBinding
+    private lateinit var fileObserver: FileObserver
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +38,7 @@ class GetEnvelopeFragment : Fragment() {
         binding.tvLogs.movementMethod = ScrollingMovementMethod()
         val logFile = File(context?.filesDir?.absolutePath.plus("/logs/${calendarToDate(Calendar.getInstance())}.log"))
         FileListener(logFile) {}.createLogFile()
-        val fileObserver = FileListener(logFile) {
+        fileObserver = FileListener(logFile) {
             binding.tvLogs.text = it
             val scrollAmount = binding.tvLogs.layout.getLineTop(binding.tvLogs.lineCount) - binding.tvLogs.height
             if (scrollAmount > 0) {
@@ -87,5 +89,15 @@ class GetEnvelopeFragment : Fragment() {
         @JvmStatic
         fun newInstance() =
             GetEnvelopeFragment()
+    }
+
+    override fun onResume() {
+        fileObserver.startWatching()
+        super.onResume()
+    }
+
+    override fun onPause() {
+        fileObserver.stopWatching()
+        super.onPause()
     }
 }
