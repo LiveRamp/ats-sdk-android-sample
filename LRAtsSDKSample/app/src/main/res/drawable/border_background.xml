@@ -8,7 +8,7 @@
         android:color="@color/material_on_background_disabled" />
 
     <!-- Background Color -->
-    <solid android:color="#FFFFFF" />
+    <solid android:color="@color/primaryColor" />
 
     <!-- You can add more customization like corner radius -->
     <corners android:radius="4dp" />
