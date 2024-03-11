@@ -4,8 +4,8 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
 
-//This class should not be used in production, it is only for demonstration purposes
-//We simulate the user adding consent
+// This class should not be used in production, it is only for demonstration purposes
+// We simulate the user adding consent
 object ConsentManager {
     private lateinit var preferences: SharedPreferences
     fun simulateUserConsent(context: Context) {
