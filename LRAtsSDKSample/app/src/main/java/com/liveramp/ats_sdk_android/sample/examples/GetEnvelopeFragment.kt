@@ -74,8 +74,10 @@ class GetEnvelopeFragment : Fragment() {
                 // val identifier = LREnvelopeIdentifier("")
                 // val identifier = LRCustomIdentifier("54321:abc123")
                 LRAtsManager.getEnvelope(identifier) { envelope, error ->
-                    error?.let { binding.tvEnvelopes.text = error.message }
-                    envelope?.let { binding.tvEnvelopes.text = envelope.stringRepresentation() }
+                    activity?.runOnUiThread {
+                        error?.let { binding.tvEnvelopes.text = error.message }
+                        envelope?.let { binding.tvEnvelopes.text = envelope.stringRepresentation() }
+                    }
                 }
             }
         }
