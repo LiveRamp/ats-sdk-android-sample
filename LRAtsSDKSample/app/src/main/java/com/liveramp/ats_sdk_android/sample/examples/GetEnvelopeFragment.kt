@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import com.liveramp.ats.LRAtsManager
 import com.liveramp.ats.model.LRAtsConfiguration
 import com.liveramp.ats.model.LREmailIdentifier
-import com.liveramp.ats.model.LREnvelopeIdentifier
 import com.liveramp.ats_sdk_android.sample.databinding.FragmentGetEnvelopeBinding
 import com.liveramp.ats_sdk_android.sample.internal.FileListener
 import com.liveramp.ats_sdk_android.sample.internal.stringRepresentation
