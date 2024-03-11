@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">LRAtsSDKSample</string>
     <string name="app_id_label">Your ATS SDK App ID</string>
-    <string name="envelopes_label">Envelopes</string>
-    <string name="log_label">SDK Debug Output</string>
+    <string name="envelopes_label">Envelope result:</string>
+    <string name="log_label">SDK Debug Output:</string>
     <string name="get_envelope_label">Get Envelope</string>
     <string name="app_id_example">85abe30a-2b2a-4b30-910d-32ecc2f80aa7</string>
 </resources>
