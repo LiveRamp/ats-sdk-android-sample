@@ -8,8 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.liveramp.ats.LRAtsManager
-import com.liveramp.ats.model.LRAtsConfiguration
-import com.liveramp.ats.model.LREmailIdentifier
+import com.liveramp.ats.model.*
 import com.liveramp.ats_sdk_android.sample.databinding.FragmentGetEnvelopeBinding
 import com.liveramp.ats_sdk_android.sample.internal.FileListener
 import com.liveramp.ats_sdk_android.sample.internal.stringRepresentation
@@ -64,7 +63,7 @@ class GetEnvelopeFragment : Fragment() {
         )
         // SDK should be initialized only once
         LRAtsManager.initialize(lrAtsConfiguration) { success, initializeError ->
-            //Covering case if init failed
+            // Covering case if init failed
             initializeError?.let {
                 binding.tvEnvelopes.text = initializeError.message
             }
