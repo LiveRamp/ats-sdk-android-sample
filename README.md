@@ -12,7 +12,7 @@ The project is meant to provide developers a functional code example that can be
 
 ## Code Structure and Organization
 
-The source code for the sample application is accessible within the `LRAtsSDKSample` subdirectoryThe source code for the sample application is accessible within the `LRAtsSDKSample` subdirectory, which is structured as follows:
+The source code for the sample application is accessible within the `LRAtsSDKSample` subdirectory, which is structured as follows:
 
 * `Examples`
     * This directory contains a collection of code snippets demonstrating various use cases of `LRAtSDK`. Each nested `Fragment` is dedicated to illustrating a specific use case. The `configureLRAtsExample` method in the `Fragment` contains all the code that is related to the use of the SDK.
