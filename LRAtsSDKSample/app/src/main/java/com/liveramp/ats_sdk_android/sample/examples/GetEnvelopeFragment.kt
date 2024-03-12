@@ -13,6 +13,9 @@ import com.liveramp.ats.model.LREmailIdentifier
 import com.liveramp.ats_sdk_android.sample.databinding.FragmentGetEnvelopeBinding
 import com.liveramp.ats_sdk_android.sample.internal.FileListener
 import com.liveramp.ats_sdk_android.sample.internal.stringRepresentation
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -74,8 +77,10 @@ class GetEnvelopeFragment : Fragment() {
                 // val identifier = LREnvelopeIdentifier("")
                 // val identifier = LRCustomIdentifier("54321:abc123")
                 LRAtsManager.getEnvelope(identifier) { envelope, error ->
-                    error?.let { binding.tvEnvelopes.text = error.message }
-                    envelope?.let { binding.tvEnvelopes.text = envelope.stringRepresentation() }
+                    CoroutineScope(Dispatchers.Main).launch {
+                        error?.let { binding.tvEnvelopes.text = error.message }
+                        envelope?.let { binding.tvEnvelopes.text = envelope.stringRepresentation() }
+                    }
                 }
             }
         }
