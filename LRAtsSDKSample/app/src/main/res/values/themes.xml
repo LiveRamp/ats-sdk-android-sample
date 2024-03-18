@@ -1,0 +1,16 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.LRAtsSDKSample" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/lrColor</item>
+        <item name="colorSecondary">@color/secondaryColor</item>
+        <item name="colorPrimaryDark">@color/lrColor</item>
+        <item name="android:buttonStyle">@style/lrButton</item>
+        <item name="background">@color/primaryColor</item>
+    </style>
+
+    <style name="Theme.LRAtsSDKSample" parent="Base.Theme.LRAtsSDKSample" />
+
+    <style name="lrButton" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@color/black</item>
+    </style>
+</resources>
