@@ -51,6 +51,13 @@ object Util {
             .plus("envelope24:\n$it\n") }
         envelope.envelope25?.let { stringRepresentation = stringRepresentation
             .plus("envelope25:\n$it\n") }
+        envelope.envelope26?.let { stringRepresentation = stringRepresentation
+            .plus("envelope26:\n$it\n") }
+        envelope.pairSegments?.let { stringRepresentation = stringRepresentation
+            .plus("pairSegments:\n$it\n")  }
+        envelope.atsDirectSegments?.let {stringRepresentation = stringRepresentation
+            .plus("atsDirectSegments:\n$it\n")
+        }
         return stringRepresentation
     }
 }
