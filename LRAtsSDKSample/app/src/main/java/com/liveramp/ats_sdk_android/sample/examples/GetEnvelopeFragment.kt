@@ -32,7 +32,7 @@ class GetEnvelopeFragment : Fragment() {
         val appID = binding.etAppId.text.toString()
         // You should provide your appID here
         val lrAtsConfiguration = LRAtsConfiguration(
-            configurationId = appID,
+            configID = appID,
             isTestMode = false,
             logToFileEnabled = true // Logging is enabled for debugging purposes, do not use it in your production app!
         )
